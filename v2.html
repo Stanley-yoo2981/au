@@ -121,8 +121,9 @@ header:not(.solid) .hd-time{color:var(--on-ink-mut)}
 .f-more::before,.f-more::after{content:"";position:absolute;background:var(--navy);transition:.3s}
 .f-more::before{width:13px;height:1.5px}
 .f-more::after{width:1.5px;height:13px}
-.field[open] .f-more{transform:rotate(135deg);background:var(--navy);border-color:var(--navy)}
-.field[open] .f-more::before,.field[open] .f-more::after{background:#fff}
+.field[open] .f-more,.qa[open] .f-more{transform:rotate(135deg);background:var(--navy);border-color:var(--navy)}
+.field[open] .f-more::before,.field[open] .f-more::after,
+.qa[open] .f-more::before,.qa[open] .f-more::after{background:#fff}
 .f-body{padding:0 0 26px}
 .f-body ul{list-style:none;max-width:680px}
 .f-body li{position:relative;padding-left:19px;font-size:16px;color:var(--navy-500);line-height:1.75;margin-bottom:9px}
@@ -191,6 +192,14 @@ header:not(.solid) .hd-time{color:var(--on-ink-mut)}
 .two .a{background:var(--navy);border-color:var(--navy)}
 .two .a h4{color:var(--on-ink)}
 .two .a li{color:var(--on-ink);border-bottom-color:rgba(255,255,255,.18)}
+
+/* 연락 후 절차 */
+.flow{counter-reset:fl;margin-top:30px;border-top:1px solid var(--paper-400)}
+.flow>div{counter-increment:fl;display:grid;grid-template-columns:44px 1fr;gap:16px;
+  padding:24px 0;border-bottom:1px solid var(--paper-400);align-items:start}
+.flow>div::before{content:"0" counter(fl);font-size:13px;font-weight:800;color:var(--navy);letter-spacing:.08em;padding-top:4px}
+.flow h4{font-size:18px;font-weight:700;color:var(--navy);letter-spacing:-.01em;margin-bottom:6px}
+.flow p{font-size:15.5px;color:var(--navy-500);line-height:1.75}
 
 /* Q&A */
 .qa{border-top:1px solid var(--paper-400)}
@@ -553,6 +562,31 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
       </div>
     </div>
     <p class="note r">상담은 카카오톡 보이스톡과 페이스톡, Zoom, Google Meet 가운데 편하신 방법으로 하시면 됩니다.<br>일정은 호주 시간에 맞춰 잡아 드립니다.</p>
+
+    <div class="r" style="margin-top:56px">
+      <h3 style="font-size:clamp(20px,4.6vw,26px);font-weight:700;color:var(--navy);letter-spacing:-.02em">연락을 주시면 이렇게 진행됩니다</h3>
+      <!-- 검토 I-1 : 아래 3단계가 실제 상담 운영 방식과 일치하는지, 특히 비용 고지 시점 확인 -->
+      <div class="flow">
+        <div>
+          <div>
+            <h4>호주 시간에 맞춰 연락드립니다</h4>
+            <p>한국 업무시간에 맞추려고 새벽에 깨어 계시지 않아도 됩니다. 편하신 시간대를 먼저 여쭙고 그때 연락드립니다.</p>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h4>상황부터 듣습니다</h4>
+            <p>미리 준비하실 서류는 없습니다. 기억나시는 대로 말씀해 주시면 됩니다. 듣고 나서 지금 움직이셔야 하는 일인지, 아직 여유가 있는지 그 자리에서 말씀드립니다.</p>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h4>비용을 먼저 알려드립니다</h4>
+            <p>맡기실지 여부는 그다음에 정하시면 됩니다. 듣기만 하고 그만두셔도 괜찮습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -565,6 +599,25 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
       <p class="lead">궁금한 항목을 누르시면 답변이 열립니다.</p>
     </div>
     <div class="r" style="margin-top:30px">
+      <!-- 검토 I-2 : 비용 안내 방식(착수 전 서면 약정 여부, 부대비용 사전 고지)이 실제와 맞는지 -->
+      <details class="qa">
+        <summary>비용이 얼마나 듭니까?<span class="f-more"></span></summary>
+        <div class="a">사건마다 다르므로 금액을 미리 적어 두지는 않습니다. 다만 <strong>맡기시기 전에 비용을 먼저 말씀드리고, 서면으로 정한 뒤 시작합니다.</strong> 듣고 나서 그만두셔도 괜찮습니다.
+        <br><br>해외에 계신 분의 사건에는 변호사 보수 외에 공증, 아포스티유, 번역, 송달 같은 <strong>부대비용</strong>이 따로 듭니다. 이런 것까지 처음에 함께 알려드립니다. 진행하다가 뒤늦게 나오는 비용이 없도록 하기 위해서입니다.</div>
+      </details>
+
+      <details class="qa">
+        <summary>형제와 싸우자는 건 아닌데, 이런 일로 변호사를 찾아도 됩니까?<span class="f-more"></span></summary>
+        <div class="a"><strong>드문 일이 아닙니다.</strong> 설명회에서도 가장 많이 나온 이야기가 이것이었습니다. 서로 얼굴을 붉히지 않고 정리하려면 오히려 사실관계를 먼저 확인해 두는 편이 낫습니다.
+        <br><br>등기부와 서류를 확인하는 일은 다투는 일이 아닙니다. 무엇이 어떻게 되어 있는지 아는 것과 모르는 것의 차이일 뿐입니다. 알아본 뒤에 아무 조치도 하지 않기로 하셔도 됩니다.</div>
+      </details>
+
+      <details class="qa">
+        <summary>부모님이 아직 살아 계신데 미리 알아보는 것이 마음에 걸립니다<span class="f-more"></span></summary>
+        <div class="a">그렇게 말씀하시는 분이 많습니다. 그런데 상속에서 가장 어려운 경우는 대부분 <strong>아무것도 모르는 상태에서 기한부터 시작되는 때</strong>였습니다.
+        <br><br>미리 알아두시는 것은 재산을 두고 셈을 하는 일이 아니라, 그때 가서 형제분들과 다투지 않기 위한 준비에 가깝습니다. 지금 아무 조치를 하지 않으셔도 됩니다. 무엇이 있는지 알아두시는 것만으로 충분합니다.</div>
+      </details>
+
       <details class="qa">
         <summary>한국에 한 번은 들어가야 하지 않습니까?<span class="f-more"></span></summary>
         <!-- 검토 B-3 : 단정 표현 가능 여부 -->
@@ -592,10 +645,6 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
       <details class="qa">
         <summary>상대방이 돈이 없다는데 소송이 의미가 있습니까?<span class="f-more"></span></summary>
         <div class="a">순서를 바꿔서 보셔야 합니다. 남아 있는 재산이 있는지 먼저 확인하고, 있다면 빠져나가기 전에 묶는 일이 우선입니다. 판결은 그다음 문제입니다.</div>
-      </details>
-      <details class="qa">
-        <summary>상담만 받아도 비용이 듭니까?<span class="f-more"></span></summary>
-        <div class="a">먼저 어떤 상황이신지 듣고, 지금 움직이셔야 하는 일인지부터 말씀드립니다. 아직 여유가 있다면 그 또한 있는 그대로 알려 드립니다.</div>
       </details>
     </div>
   </div>
