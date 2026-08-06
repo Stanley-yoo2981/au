@@ -33,13 +33,23 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 .btn-kakao{background:#FEE500;color:#191600}
 .btn-line{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
 
-/* 신뢰바 */
-.trust{background:var(--bg);padding:30px 0;border-bottom:1px solid var(--line)}
-.mou{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.mou figure{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 6px 12px;text-align:center;font-size:12px;font-weight:700;line-height:1.4}
-.mou img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:5px;margin-bottom:8px;background:var(--bg)}
-.mou span{display:block;font-size:10px;color:var(--blue);font-weight:800;margin-top:4px}
-.trust-note{text-align:center;font-size:13px;color:var(--gray)}
+/* 신뢰 — 협약 · 세미나 */
+.trust{background:var(--bg);padding:52px 0;border-bottom:1px solid var(--line)}
+.mou{display:flex;flex-direction:column;gap:14px;margin-top:26px}
+.mou figure{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.mou a{display:block}
+.mou img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;background:#e9ebef}
+.mou figcaption{display:flex;align-items:center;gap:10px;padding:14px 16px}
+.mou .no{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.mou .org{font-size:16px;font-weight:800;line-height:1.35}
+.mou .kind{display:block;font-size:12px;font-weight:700;color:var(--blue);margin-top:2px}
+.mou .zoom{margin-left:auto;flex-shrink:0;font-size:11px;color:var(--gray);white-space:nowrap}
+.seminar{margin-top:14px;background:var(--navy);color:#fff;border-radius:12px;overflow:hidden}
+.seminar img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.seminar div{padding:18px 16px 20px}
+.seminar b{display:block;font-size:17px;font-weight:800;margin-bottom:6px}
+.seminar p{font-size:14px;opacity:.8;line-height:1.65}
+.trust-note{margin-top:16px;font-size:12px;color:var(--gray);line-height:1.65}
 
 /* 카드 */
 .cards{display:flex;flex-direction:column;gap:12px}
@@ -166,12 +176,52 @@ footer b{color:#e5e7eb}
 <!-- 2. 신뢰바 -->
 <div class="trust">
   <div class="wrap">
+    <h2>호주 한인 사회가<br>먼저 확인했습니다</h2>
+    <p class="sub">현지 세 곳의 한인 단체와 업무협약을 맺었습니다.<br>단체가 교민에게 소개하기 전에 검증하는 절차를 거쳤습니다.</p>
+
+    <!-- 검토 G-1 : 단체 정식 명칭 · 체결 시점 확인 -->
     <div class="mou">
-      <figure><img src="images/mou-korean-association.jpg" alt="호주 시드니한인회 업무협약 체결" loading="lazy" width="1200" height="900">호주 한인회<span>MOU 체결</span></figure>
-      <figure><img src="images/mou-chamber-of-commerce.jpg" alt="호주한인상공회의소 업무협약 체결" loading="lazy" width="1200" height="900">시드니상공회의소<span>MOU 체결</span></figure>
-      <figure><img src="images/mou-welfare-society.jpg" alt="호주한인복지회 업무협약 체결" loading="lazy" width="1200" height="900">호주복지회<span>MOU 체결</span></figure>
+      <figure>
+        <a href="images/mou-korean-association.jpg" target="_blank" rel="noopener">
+          <img src="images/mou-korean-association.jpg" alt="호주시드니한인회 업무협약 체결식" loading="lazy" width="1200" height="900">
+        </a>
+        <figcaption>
+          <span class="no">1</span>
+          <div><div class="org">호주시드니한인회</div><span class="kind">업무협약 체결</span></div>
+          <span class="zoom">눌러서 크게 보기</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="images/mou-chamber-of-commerce.jpg" target="_blank" rel="noopener">
+          <img src="images/mou-chamber-of-commerce.jpg" alt="호주한인상공회의소 업무협약 체결식" loading="lazy" width="1200" height="900">
+        </a>
+        <figcaption>
+          <span class="no">2</span>
+          <div><div class="org">호주한인상공회의소</div><span class="kind">업무협약 체결</span></div>
+          <span class="zoom">눌러서 크게 보기</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="images/mou-welfare-society.jpg" target="_blank" rel="noopener">
+          <img src="images/mou-welfare-society.jpg" alt="호주한인복지회 업무협약 체결식" loading="lazy" width="1200" height="900">
+        </a>
+        <figcaption>
+          <span class="no">3</span>
+          <div><div class="org">호주한인복지회</div><span class="kind">업무협약 체결</span></div>
+          <span class="zoom">눌러서 크게 보기</span>
+        </figcaption>
+      </figure>
     </div>
-    <p class="trust-note">호주 현지 세미나 2회 개최 · 호주 거주 의뢰인 사건 수행</p>
+
+    <div class="seminar">
+      <img src="images/au-seminar-2.jpg" alt="호주 현지 상속 세미나 현장" loading="lazy" width="1600" height="1200">
+      <div>
+        <b>현지에 두 번 갔습니다</b>
+        <p>화상 상담으로 대신하지 않았습니다. 호주에서 상속 세미나를 두 차례 열고 교민들의 질문을 직접 받았습니다. 그 자리에서 나온 질문들이 이 페이지에 담겨 있습니다.</p>
+      </div>
+    </div>
+
+    <p class="trust-note">협약 체결식 및 세미나 현장 사진입니다. 사진을 누르면 원본 크기로 보실 수 있습니다.</p>
   </div>
 </div>
 
