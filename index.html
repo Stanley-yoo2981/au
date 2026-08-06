@@ -104,10 +104,13 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 
 /* 변호사 */
 .lawyer{background:var(--bg)}
-.ly{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px}
-.ly img{width:78px;height:78px;border-radius:8px;object-fit:cover;background:#ddd;flex-shrink:0}
-.ly h4{font-size:17px;font-weight:800}
-.ly p{font-size:13px;color:var(--gray);margin-top:4px}
+.ly{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ly figure{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ly img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:top center;background:#e9ebef}
+.ly figcaption{padding:12px 14px 14px}
+.ly .role{display:block;font-size:11px;font-weight:800;color:var(--blue);letter-spacing:.3px;margin-bottom:3px}
+.ly .name{font-size:17px;font-weight:800}
+.ly-note{margin-top:14px;font-size:13px;color:var(--gray);line-height:1.65}
 
 /* 폼 */
 .form-sec{background:var(--navy);color:#fff}
@@ -355,15 +358,28 @@ footer b{color:#e5e7eb}
 <!-- 7. 변호사 -->
 <section class="lawyer">
   <div class="wrap">
-    <h2>담당 변호사</h2>
-    <p class="sub">호주 교민 상속 사건을 직접 맡아온 변호사가 상담합니다.</p>
+    <h2>사건을 맡는<br>변호사 4인</h2>
+    <p class="sub">상담부터 종결까지 소속 변호사가 직접 대응합니다.</p>
     <div class="ly">
-      <img src="images/lawyer-yoo.png" alt="유영규 대표변호사">
-      <div>
-        <h4>유영규 대표변호사</h4>
-        <p>대한변호사협회 인증 형사전문변호사<br>호주 교민 상속 세미나 2회 개최</p>
-      </div>
+      <figure>
+        <img src="images/lawyer-yoo-younggyu.png" alt="유영규 대표변호사" loading="lazy" width="440" height="567">
+        <figcaption><span class="role">대표 변호사</span><div class="name">유영규</div></figcaption>
+      </figure>
+      <figure>
+        <img src="images/lawyer-kim-hwanseop.png" alt="김환섭 변호사" loading="lazy" width="440" height="567">
+        <figcaption><span class="role">변호사</span><div class="name">김환섭</div></figcaption>
+      </figure>
+      <figure>
+        <img src="images/lawyer-kim-seonho.png" alt="김선호 변호사" loading="lazy" width="440" height="566">
+        <figcaption><span class="role">변호사</span><div class="name">김선호</div></figcaption>
+      </figure>
+      <figure>
+        <img src="images/lawyer-hong-giwoong.png" alt="홍기웅 변호사" loading="lazy" width="440" height="567">
+        <figcaption><span class="role">변호사</span><div class="name">홍기웅</div></figcaption>
+      </figure>
     </div>
+    <!-- 검토 F-1 : 개별 변호사 직함·전문분야 인증 표기를 추가할 경우 근거 확인 -->
+    <p class="ly-note">호주 현지에서 상속 세미나를 두 차례 열었고, 호주에 거주하시는 의뢰인의 사건을 수행해 왔습니다.</p>
   </div>
 </section>
 
