@@ -161,7 +161,7 @@ header:not(.solid) .hd-time{color:var(--on-ink-mut)}
 .dl small{display:block;font-size:14.5px;color:var(--on-ink-mut);margin-top:4px;line-height:1.65}
 
 /* 사례 */
-.case{border-top:1px solid var(--paper-400);padding:32px 0}
+.case{border-top:1px solid var(--paper-400)}
 .case:last-of-type{border-bottom:1px solid var(--paper-400)}
 .c-head{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:13px}
 .tag{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--navy-500);border:1px solid var(--paper-400);border-radius:2px;padding:5px 10px}
@@ -193,7 +193,24 @@ header:not(.solid) .hd-time{color:var(--on-ink-mut)}
 .two .a h4{color:var(--on-ink)}
 .two .a li{color:var(--on-ink);border-bottom-color:rgba(255,255,255,.18)}
 
+/* 사례 — 요약만 보이고 본문은 접는다 */
+.case summary{list-style:none;cursor:pointer;display:block;position:relative;padding:30px 0 26px}
+.case summary::-webkit-details-marker{display:none}
+.case .c-head{padding-right:44px}
+.case summary h3{margin-bottom:10px;padding-right:44px}
+.c-sum{font-size:16px;color:var(--navy-700);line-height:1.7;padding-right:44px}
+.case .f-more{top:32px}
+.c-body{padding-bottom:28px}
+.c-body h4:first-of-type{margin-top:0}
+
 /* 연락 후 절차 */
+.on-navy .flow{border-top-color:rgba(255,255,255,.20)}
+.on-navy .flow>div{border-bottom-color:rgba(255,255,255,.20)}
+.on-navy .flow>div::before{color:var(--on-ink)}
+.on-navy .flow h4{color:var(--on-ink)}
+.on-navy .flow p{color:var(--on-ink-mut)}
+.on-navy .flow h3{color:var(--on-ink)}
+.on-navy .flow b{color:var(--on-ink)!important}
 .flow{counter-reset:fl;margin-top:30px;border-top:1px solid var(--paper-400)}
 .flow>div{counter-increment:fl;display:grid;grid-template-columns:44px 1fr;gap:16px;
   padding:24px 0;border-bottom:1px solid var(--paper-400);align-items:start}
@@ -278,6 +295,54 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
   .top{bottom:calc(20px + env(safe-area-inset-bottom))}
   footer{padding-bottom:56px}
 }
+/* 모바일에서는 사진을 자르지 않는다.
+   390px 세로 화면에서 16:9 사진을 cover 로 채우면 가로의 34% 만 보인다.
+   확대돼 보이는 것도, 화면 하나를 통째로 먹는 것도 같은 원인이다.
+   원래 비율로 눕히면 사진 전체가 보이고 깊이도 줄어든다 */
+@media(max-width:699px){
+  /* 히어로가 더 이상 헤더 뒤로 깔리지 않는다. 헤더를 항상 불투명하게 두고
+     본문을 헤더 높이만큼 내려 사진이 가려지지 않게 한다 */
+  body{padding-top:var(--hd)}
+  header,header:not(.solid){background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+    border-bottom-color:var(--paper-400)}
+  header:not(.solid) .brand{color:var(--navy)}
+  header:not(.solid) .brand span{color:var(--navy-500);opacity:1}
+  header:not(.solid) .hd-time{color:var(--navy-500)}
+
+  .bleed{display:block;min-height:0;padding:0;background:var(--navy);overflow:visible}
+  .bleed>img{position:static;width:100%;height:auto;aspect-ratio:16/10;object-position:center;
+    filter:saturate(.9) contrast(1.02)}
+  .bleed::after{display:none}
+  .bleed .wrap{padding-top:30px;padding-bottom:38px}
+  .bleed h1,.bleed .lead,.bleed .eyebrow{text-shadow:none}
+  .credit{position:static;text-align:right;padding:9px var(--pad) 0;
+    color:var(--on-ink-mut);text-shadow:none;font-size:11px}
+  section{padding:56px 0}
+  .trust-note{margin-top:12px}
+
+  /* 모바일 여백 조이기 — 내용은 그대로 두고 깊이만 줄인다 */
+  .lead{margin-top:14px;line-height:1.7}
+  .lead + .lead{margin-top:12px}
+  .mou{gap:10px;margin-top:26px}
+  .mou img{aspect-ratio:3/2}          /* 4:3 원본에서 위아래만 살짝 잘린다 */
+  .mou figcaption{padding:13px 15px}
+  .two{grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
+  .two>div{padding:18px 14px}
+  .two li{font-size:14.5px}
+  .two>div{padding:20px 18px}
+  .two h4{margin-bottom:10px}
+  .two li{padding:7px 0}
+  .flow>div{padding:20px 0;gap:13px}
+  .flow p{line-height:1.7}
+  .field summary{padding:22px 0}
+  .f-body{padding-bottom:22px}
+  .case summary{padding:24px 0 22px}
+  .qa summary{padding:19px 40px 19px 0}
+  .qa .a{padding-bottom:20px}
+  .dl{padding:20px 0}
+  .ly{gap:10px;margin-top:24px}
+  .note{margin-top:20px}
+}
 @media(max-width:360px){
   :root{--pad:17px}
   .dl{grid-template-columns:90px 1fr;gap:12px}
@@ -301,6 +366,7 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
 <!-- 히어로 -->
 <div class="bleed">
   <img src="images/au-seminar.webp" alt="법무법인 여온 호주 교민 대상 법률 설명회 현장">
+  <div class="credit">2025년 2월 설명회 촬영 사진</div>
   <div class="wrap on-navy">
     <div class="r">
       <div class="eyebrow">호주 교민 한국 법률문제 전담</div>
@@ -315,7 +381,6 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
       </div>
     </div>
   </div>
-  <div class="credit">2025년 2월 세미나 촬영 사진</div>
 </div>
 
 <!-- 01 검증 -->
@@ -358,11 +423,96 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
   </div>
 </div>
 
-<!-- 02 분야 -->
+<!-- 02 변호사 -->
+<section>
+  <div class="wrap">
+    <div class="r narrow">
+      <div class="eyebrow">02 — 변호사</div>
+      <h2>한 사람이 아니라<br>네 사람이 봅니다</h2>
+      <p class="lead">저희는 변호사마다 분야를 나누지 않습니다. 상속이든 자녀 병역이든 부동산이든,
+        해외에 계신 분의 사건에서 막히는 자리는 결국 같은 곳이기 때문입니다.
+        위임장을 어떻게 갖출지, 인감을 무엇으로 갈음할지, 서류 원본을 어느 경로로 보내고 받을지.</p>
+      <p class="lead">저희가 다루는 것은 법 분야가 아니라 <b style="color:var(--navy);font-weight:800">해외에 계신 분의 한국 사건</b>입니다.
+        그래서 네 사람이 같은 사건을 함께 봅니다.</p>
+    </div>
+    <!-- 검토 F-1 : 개별 변호사 직함·전문분야 인증 표기를 추가할 경우 근거 확인 -->
+    <div class="ly r">
+      <figure><img src="images/lawyer-yoo-younggyu.webp" alt="유영규 대표변호사" loading="lazy">
+        <figcaption><span class="role">대표 변호사</span><div class="name">유영규</div></figcaption></figure>
+      <figure><img src="images/lawyer-kim-hwanseop.webp" alt="김환섭 변호사" loading="lazy">
+        <figcaption><span class="role">변호사</span><div class="name">김환섭</div></figcaption></figure>
+      <figure><img src="images/lawyer-hong-giwoong.webp" alt="홍기웅 변호사" loading="lazy">
+        <figcaption><span class="role">변호사</span><div class="name">홍기웅</div></figcaption></figure>
+      <figure><img src="images/lawyer-kim-seonho.webp" alt="김선호 변호사" loading="lazy">
+        <figcaption><span class="role">변호사</span><div class="name">김선호</div></figcaption></figure>
+    </div>
+    <p class="note r">2025년 2월 시드니 설명회에는 네 사람이 모두 참석해 직접 강연했습니다. 한 명을 보내 사진만 남기는 방식으로는, 그 자리에서 나온 질문을 알 수 없다고 보았기 때문입니다.</p>
+  </div>
+</section>
+
+<!-- 03 절차 -->
+<section>
+  <div class="wrap">
+    <div class="r narrow">
+      <div class="eyebrow">03 — 절차</div>
+      <h2>한국에 들어오지 않으셔도<br>진행됩니다</h2>
+      <p class="lead">어디까지 맡기실 수 있는지 먼저 확인해 보시기 바랍니다.</p>
+    </div>
+    <!-- 검토 B-1 · B-3 : 재외공관 서명인증 대체 근거 / 단정 표현 가능 여부 -->
+    <div class="two r">
+      <div>
+        <h4>호주에서 하실 일</h4>
+        <ul>
+          <li>카카오톡으로 상황 말씀</li>
+          <li>서류 준비 (양식은 보내 드립니다)</li>
+          <li>총영사관 서명인증</li>
+          <li>위임장 작성</li>
+        </ul>
+      </div>
+      <div class="a">
+        <h4>여온이 맡습니다</h4>
+        <ul>
+          <li>법원 접수와 변론</li>
+          <li>가압류 등 보전 절차</li>
+          <li>등기와 세무 신고</li>
+          <li>상대방 · 이해관계인 협의</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note r">상담은 카카오톡 보이스톡과 페이스톡, Zoom, Google Meet 가운데 편하신 방법으로 하시면 됩니다.<br>일정은 호주에서 편하신 시간에 맞춰 잡아 드립니다.</p>
+
+  </div>
+</section>
+
+<!-- 04 기한 -->
+<section class="on-navy">
+  <div class="wrap">
+    <div class="r narrow">
+      <div class="eyebrow">04 — 기한</div>
+      <h2>멀리 계셔도<br>기한은 그대로 흘러갑니다</h2>
+      <p class="lead">아래는 한 번 지나면 되돌릴 수 없는 기한입니다.</p>
+    </div>
+    <div class="r" style="margin-top:36px">
+      <!-- 검토 A-1 : 상속포기·한정승인 기산점 문언 확인 -->
+      <div class="dl"><b>3개월</b><div><i>상속</i><div class="t">상속포기 · 한정승인</div><small>상속이 개시된 사실을 안 날부터</small></div></div>
+      <!-- 검토 A-2 : 9개월 적용 요건 확인 -->
+      <div class="dl"><b>9개월</b><div><i>상속</i><div class="t">상속세 신고</div><small>국외에 주소를 둔 경우</small></div></div>
+      <!-- 검토 A-3 : 유류분 1년 기산점 · 10년 제척기간 병기 여부 -->
+      <div class="dl"><b>1년</b><div><i>상속</i><div class="t">유류분 청구</div><small>상속 개시와 증여 사실을 모두 알게 된 때부터</small></div></div>
+      <!-- 검토 A-4 : 국적법 제12조 제2항 문언과 대상 범위 -->
+      <div class="dl"><b>18세</b><div><i>자녀 국적</i><div class="t">국적이탈 신고</div><small>만 18세가 되는 해의 3월 31일까지</small></div></div>
+      <!-- 검토 A-5 : 물품대금 소멸시효. 단일 숫자 표기 가능 여부 -->
+      <div class="dl"><b>3년</b><div><i>거래 대금</i><div class="t">물품대금 청구권 시효</div><small>거래 형태에 따라 기간이 달라질 수 있습니다</small></div></div>
+      <p class="note">서류를 갖추는 데만 몇 주가 걸립니다. 남은 기간이 얼마인지부터 확인해 보시기 바랍니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 분야 -->
 <section id="fields">
   <div class="wrap">
     <div class="r narrow">
-      <div class="eyebrow">02 — 분야</div>
+      <div class="eyebrow">05 — 분야</div>
       <h2>어떤 일로<br>찾아오셨습니까</h2>
       <p class="lead">호주에 계신 분들이 한국에 남겨두신 문제는 대개 네 가지로 모입니다.<br>해당하는 항목을 누르시면 자세한 내용이 열립니다.</p>
     </div>
@@ -443,44 +593,25 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
   </div>
 </section>
 
-<!-- 03 기한 -->
-<section class="on-navy">
-  <div class="wrap">
-    <div class="r narrow">
-      <div class="eyebrow">03 — 기한</div>
-      <h2>멀리 계셔도<br>기한은 그대로 흘러갑니다</h2>
-      <p class="lead">아래는 한 번 지나면 되돌릴 수 없는 기한입니다.</p>
-    </div>
-    <div class="r" style="margin-top:36px">
-      <!-- 검토 A-1 : 상속포기·한정승인 기산점 문언 확인 -->
-      <div class="dl"><b>3개월</b><div><i>상속</i><div class="t">상속포기 · 한정승인</div><small>상속이 개시된 사실을 안 날부터</small></div></div>
-      <!-- 검토 A-2 : 9개월 적용 요건 확인 -->
-      <div class="dl"><b>9개월</b><div><i>상속</i><div class="t">상속세 신고</div><small>국외에 주소를 둔 경우</small></div></div>
-      <!-- 검토 A-3 : 유류분 1년 기산점 · 10년 제척기간 병기 여부 -->
-      <div class="dl"><b>1년</b><div><i>상속</i><div class="t">유류분 청구</div><small>상속 개시와 증여 사실을 모두 알게 된 때부터</small></div></div>
-      <!-- 검토 A-4 : 국적법 제12조 제2항 문언과 대상 범위 -->
-      <div class="dl"><b>18세</b><div><i>자녀 국적</i><div class="t">국적이탈 신고</div><small>만 18세가 되는 해의 3월 31일까지</small></div></div>
-      <!-- 검토 A-5 : 물품대금 소멸시효. 단일 숫자 표기 가능 여부 -->
-      <div class="dl"><b>3년</b><div><i>거래 대금</i><div class="t">물품대금 청구권 시효</div><small>거래 형태에 따라 기간이 달라질 수 있습니다</small></div></div>
-      <p class="note">서류를 갖추는 데만 몇 주가 걸립니다. 남은 기간이 얼마인지부터 확인해 보시기 바랍니다.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 04 사례 -->
+<!-- 06 사례 -->
 <section>
   <div class="wrap">
     <div class="r narrow">
-      <div class="eyebrow">04 — 사례</div>
+      <div class="eyebrow">06 — 사례</div>
       <h2>실제로 막혔던 자리와<br>저희가 택한 길</h2>
       <p class="lead">해외에 계신 분들이 실제로 부딪혔던 지점과, 그것을 풀어 간 방법입니다.<br>맡아 온 사건 가운데 세 건을 옮겨 적었습니다. 아직 진행 중인 사건도 함께 실었습니다.</p>
     </div>
 
     <div style="margin-top:36px">
       <!-- 검토 E-3 : '3개월' 기산점 표현이 기한 섹션(A-1)과 일치하는지 -->
-      <div class="case r">
-        <div class="c-head"><span class="tag">캐나다 · 상속포기</span><span class="tag end">종결</span></div>
-        <h3>세 남매가 3개월 안에 채무를 끊어 낸 사건</h3>
+      <details class="case r">
+        <summary>
+          <div class="c-head"><span class="tag">캐나다 · 상속포기</span><span class="tag end">종결</span></div>
+          <h3>세 남매가 3개월 안에 채무를 끊어 낸 사건</h3>
+          <p class="c-sum">세 분 모두 입국하지 않고 3개월 기한 안에 상속포기를 마쳤습니다.</p>
+          <span class="f-more"></span>
+        </summary>
+        <div class="c-body">
         <h4>상황</h4>
         <p>한국에 계시던 아버지께서 채무를 남기고 돌아가셨습니다. 자녀 세 분은 모두 해외에 계셨습니다.</p>
         <p>빚이 넘어오는 것을 막으려면 상속포기를 해야 하고, 이는 상속이 개시된 사실을 안 날부터 3개월 안에 마쳐야 합니다. 그런데 인감, 기본증명서, 위임장 같은 관공서 서류를 해외에서 기한 안에 갖추는 일은 대리인 없이는 쉽지 않습니다.</p>
@@ -490,13 +621,18 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
           <li><strong>기한 안에 접수했습니다</strong> — 서류가 도착하는 대로 상속재산포기 심판청구서를 가정법원에 접수했습니다.</li>
           <li><strong>심판이 수리되었습니다</strong> — 법원으로부터 상속포기를 수리한다는 결정을 받았습니다.</li>
         </ol>
-        <p class="res"><em>결과</em>세 분 모두 입국하지 않으시고 3개월 기한 안에 상속포기를 마치셨습니다.</p>
-      </div>
+        <p class="res"><em>결과</em>세 분 모두 입국하지 않으시고 3개월 기한 안에 상속포기를 마치셨습니다.</p></div>
+      </details>
 
       <!-- 검토 E-1 : 국적·거주지 표기 수위 / 공탁관 불수리 취지 인용의 정확성 -->
-      <div class="case r">
-        <div class="c-head"><span class="tag">호주 · 상속 예금</span><span class="tag ing">소송 진행 중</span></div>
-        <h3>은행이 예금을 법원에 맡겨 버린 사건</h3>
+      <details class="case r">
+        <summary>
+          <div class="c-head"><span class="tag">호주 · 상속 예금</span><span class="tag ing">소송 진행 중</span></div>
+          <h3>은행이 예금을 법원에 맡겨 버린 사건</h3>
+          <p class="c-sum">은행도 법원 창구도 판단을 미루던 사안을, 판결로 상속인 지위를 확정받는 소송으로 옮겼습니다.</p>
+          <span class="f-more"></span>
+        </summary>
+        <div class="c-body">
         <h4>상황</h4>
         <p>호주에 거주하시던 분이 한국의 시중은행에 예금을 남기고 돌아가셨습니다. 배우자께서 예금을 찾으시려고 한국 은행을 두 차례 방문하셨습니다.</p>
         <p>은행은 지급을 거절했습니다. 고인이 호주 시민권자이니 한국법이 아니라 호주법에 따라 상속인임을 증명하라는 것이었습니다.</p>
@@ -509,13 +645,18 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
           <li><strong>본안 소송으로 자리를 옮겼습니다</strong> — 공탁관의 심사 권한에 한계가 있다는 점을 짚고, 창구에서 다투는 대신 공탁금출급확인의 소를 제기했습니다.</li>
           <li><strong>외국법을 증명했습니다</strong> — 국제사법에 따라 적용될 호주 상속법의 내용을 한국 법원에 제시했습니다.</li>
         </ol>
-        <p class="res"><em>현재</em>창구에서 거듭 거절되던 사안을, 입국 없이 상속인 지위를 판결로 확정받는 절차로 옮겨 소송을 진행하고 있습니다.</p>
-      </div>
+        <p class="res"><em>현재</em>창구에서 거듭 거절되던 사안을, 입국 없이 상속인 지위를 판결로 확정받는 절차로 옮겨 소송을 진행하고 있습니다.</p></div>
+      </details>
 
       <!-- 검토 E-2 : 진행 중 사건. 경과 서술의 정확성 / 진행 중 사건의 광고 게재 가능 여부 -->
-      <div class="case r">
-        <div class="c-head"><span class="tag">호주 · 무역 대금</span><span class="tag ing">보전 절차 진행 중</span></div>
-        <h3>대금을 보냈는데 공장이 연락을 끊은 사건</h3>
+      <details class="case r">
+        <summary>
+          <div class="c-head"><span class="tag">호주 · 무역 대금</span><span class="tag ing">보전 절차 진행 중</span></div>
+          <h3>대금을 보냈는데 공장이 연락을 끊은 사건</h3>
+          <p class="c-sum">호주에서는 손쓸 수 없던 상대방의 한국 내 재산을 보전 절차로 묶었습니다.</p>
+          <span class="f-more"></span>
+        </summary>
+        <div class="c-body">
         <h4>상황</h4>
         <p>호주에서 사업을 하시는 교민께서 한국의 제조 공장에 물품 대금을 먼저 보내셨습니다. 납기가 지나도 물건은 오지 않았고, 공장 측은 연락을 끊었습니다.</p>
         <p>현지 경찰에 신고해도 한국에 있는 법인의 계좌에는 손을 댈 수 없었습니다. 그사이 상대방이 재산을 옮겨 두면, 뒤늦게 판결을 받아도 돌려받을 것이 남지 않습니다.</p>
@@ -524,76 +665,19 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
           <li><strong>재산부터 묶었습니다</strong> — 증거를 모으며 기다리지 않고, 한국 내 거래계좌와 영업용 자산을 특정해 가압류를 신청했습니다.</li>
           <li><strong>협상의 지렛대를 만들었습니다</strong> — 계좌가 묶이면 영업이 멈춥니다. 판결까지 가지 않더라도 상대방이 먼저 협의에 나설 수밖에 없는 구도를 만들었습니다.</li>
         </ol>
-        <p class="res"><em>현재</em>호주에서는 손쓸 수 없던 상대방의 한국 내 재산을 대상으로 보전 절차를 밟고 있습니다.</p>
-      </div>
+        <p class="res"><em>현재</em>호주에서는 손쓸 수 없던 상대방의 한국 내 재산을 대상으로 보전 절차를 밟고 있습니다.</p></div>
+      </details>
 
       <p class="note r"><b>진행 중</b>으로 표시한 사건은 아직 종결되지 않았으며, 적힌 내용은 현재까지의 경과일 뿐 결과가 확정된 것이 아닙니다. 위 내용은 실제 수임 사건을 의뢰인이 특정되지 않도록 각색했습니다. 개별 사건은 사실관계와 증거에 따라 결론이 달라지며, 같은 결과를 보장하지 않습니다.</p>
     </div>
   </div>
 </section>
 
-<!-- 05 절차 -->
-<section>
-  <div class="wrap">
-    <div class="r narrow">
-      <div class="eyebrow">05 — 절차</div>
-      <h2>한국에 들어오지 않으셔도<br>진행됩니다</h2>
-      <p class="lead">어디까지 맡기실 수 있는지 먼저 확인해 보시기 바랍니다.</p>
-    </div>
-    <!-- 검토 B-1 · B-3 : 재외공관 서명인증 대체 근거 / 단정 표현 가능 여부 -->
-    <div class="two r">
-      <div>
-        <h4>호주에서 하실 일</h4>
-        <ul>
-          <li>카카오톡으로 상황 말씀</li>
-          <li>서류 준비 (양식은 보내 드립니다)</li>
-          <li>총영사관 서명인증</li>
-          <li>위임장 작성</li>
-        </ul>
-      </div>
-      <div class="a">
-        <h4>여온이 맡습니다</h4>
-        <ul>
-          <li>법원 접수와 변론</li>
-          <li>가압류 등 보전 절차</li>
-          <li>등기와 세무 신고</li>
-          <li>상대방 · 이해관계인 협의</li>
-        </ul>
-      </div>
-    </div>
-    <p class="note r">상담은 카카오톡 보이스톡과 페이스톡, Zoom, Google Meet 가운데 편하신 방법으로 하시면 됩니다.<br>일정은 호주에서 편하신 시간에 맞춰 잡아 드립니다.</p>
-
-    <div class="r" style="margin-top:56px">
-      <h3 style="font-size:clamp(20px,4.6vw,26px);font-weight:700;color:var(--navy);letter-spacing:-.02em">연락을 주시면 이렇게 진행됩니다</h3>
-      <div class="flow">
-        <div>
-          <div>
-            <h4>같은 시간대에서 이야기합니다</h4>
-            <p>시드니와 한국은 한두 시간 차이입니다. 메일로 며칠씩 주고받을 일을 그 자리에서 통화로 정리할 수 있습니다. 낮에 일이 있으시면 호주 시간 밤 10시까지 맞춰 드립니다.</p>
-          </div>
-        </div>
-        <div>
-          <div>
-            <h4>상황부터 듣습니다</h4>
-            <p>미리 준비하실 서류는 없습니다. 기억나시는 대로 말씀해 주시면 됩니다. 듣고 나서 지금 움직이셔야 하는 일인지, 아직 여유가 있는지 그 자리에서 말씀드립니다.</p>
-          </div>
-        </div>
-        <div>
-          <div>
-            <h4>비용을 먼저 알려드립니다</h4>
-            <p>시작하기 전에 비용을 <b style="color:var(--navy);font-weight:800">서면으로 정합니다.</b> 맡기실지 여부는 그것을 보시고 정하시면 됩니다. 듣기만 하고 그만두셔도 괜찮습니다.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 06 질문 -->
+<!-- 07 질문 -->
 <section>
   <div class="wrap narrow">
     <div class="r">
-      <div class="eyebrow">06 — 질문</div>
+      <div class="eyebrow">07 — 질문</div>
       <h2>설명회에서<br>가장 많이 나온 질문</h2>
       <p class="lead">궁금한 항목을 누르시면 답변이 열립니다.</p>
     </div>
@@ -648,33 +732,6 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
   </div>
 </section>
 
-<!-- 07 변호사 -->
-<section>
-  <div class="wrap">
-    <div class="r narrow">
-      <div class="eyebrow">07 — 변호사</div>
-      <h2>한 사람이 아니라<br>네 사람이 봅니다</h2>
-      <p class="lead">저희는 변호사마다 분야를 나누지 않습니다. 상속이든 자녀 병역이든 부동산이든,
-        해외에 계신 분의 사건에서 막히는 자리는 결국 같은 곳이기 때문입니다.
-        위임장을 어떻게 갖출지, 인감을 무엇으로 갈음할지, 서류 원본을 어느 경로로 보내고 받을지.</p>
-      <p class="lead">저희가 다루는 것은 법 분야가 아니라 <b style="color:var(--navy);font-weight:800">해외에 계신 분의 한국 사건</b>입니다.
-        그래서 네 사람이 같은 사건을 함께 봅니다.</p>
-    </div>
-    <!-- 검토 F-1 : 개별 변호사 직함·전문분야 인증 표기를 추가할 경우 근거 확인 -->
-    <div class="ly r">
-      <figure><img src="images/lawyer-yoo-younggyu.webp" alt="유영규 대표변호사" loading="lazy">
-        <figcaption><span class="role">대표 변호사</span><div class="name">유영규</div></figcaption></figure>
-      <figure><img src="images/lawyer-kim-hwanseop.webp" alt="김환섭 변호사" loading="lazy">
-        <figcaption><span class="role">변호사</span><div class="name">김환섭</div></figcaption></figure>
-      <figure><img src="images/lawyer-hong-giwoong.webp" alt="홍기웅 변호사" loading="lazy">
-        <figcaption><span class="role">변호사</span><div class="name">홍기웅</div></figcaption></figure>
-      <figure><img src="images/lawyer-kim-seonho.webp" alt="김선호 변호사" loading="lazy">
-        <figcaption><span class="role">변호사</span><div class="name">김선호</div></figcaption></figure>
-    </div>
-    <p class="note r">2025년 2월 시드니 설명회에는 네 사람이 모두 참석해 직접 강연했습니다. 한 명을 보내 사진만 남기는 방식으로는, 그 자리에서 나온 질문을 알 수 없다고 보았기 때문입니다.</p>
-  </div>
-</section>
-
 <!-- 08 상담 -->
 <section class="on-navy" id="contact">
   <div class="wrap narrow">
@@ -682,6 +739,29 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
       <div class="eyebrow">08 — 상담</div>
       <h2>당장 급한 일이<br>아니어도 괜찮습니다</h2>
       <p class="lead">부모님께서 아직 건강하시고 지금은 아무 일이 없더라도,<br>알고 계시는 것과 모르고 계시는 것의 차이는 나중에 드러납니다.</p>
+    <div class="r" style="margin-bottom:40px">
+      <h3 style="font-size:clamp(20px,4.6vw,26px);font-weight:700;letter-spacing:-.02em">연락을 주시면 이렇게 진행됩니다</h3>
+      <div class="flow">
+        <div>
+          <div>
+            <h4>같은 시간대에서 이야기합니다</h4>
+            <p>시드니와 한국은 한두 시간 차이입니다. 메일로 며칠씩 주고받을 일을 그 자리에서 통화로 정리할 수 있습니다. 낮에 일이 있으시면 호주 시간 밤 10시까지 맞춰 드립니다.</p>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h4>상황부터 듣습니다</h4>
+            <p>미리 준비하실 서류는 없습니다. 기억나시는 대로 말씀해 주시면 됩니다. 듣고 나서 지금 움직이셔야 하는 일인지, 아직 여유가 있는지 그 자리에서 말씀드립니다.</p>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h4>비용을 먼저 알려드립니다</h4>
+            <p>시작하기 전에 비용을 <b style="color:var(--navy);font-weight:800">서면으로 정합니다.</b> 맡기실지 여부는 그것을 보시고 정하시면 됩니다. 듣기만 하고 그만두셔도 괜찮습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
       <form>
         <input type="text" name="name" placeholder="성함" autocomplete="name" required>
         <input type="tel" name="tel" placeholder="연락처 (호주 번호도 괜찮습니다)" inputmode="tel" autocomplete="tel" required>
