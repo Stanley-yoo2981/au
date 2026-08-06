@@ -6,6 +6,7 @@
 <title>호주 교민의 한국 법률문제, 입국 없이 | 법무법인 여온</title>
 <meta name="description" content="상속·자녀 병역·거래 대금·부동산. 호주시드니한인회, 호주한인상공회의소, 호주한인복지회 업무협약. 한국에 들어오지 않고 진행합니다.">
 <meta name="theme-color" content="#033373">
+<script>document.documentElement.className+=' js';</script>
 <style>
 /* =========================================================
    법무법인 여온 — Deep Navy & White
@@ -71,14 +72,14 @@ header:not(.solid) .hd-time{color:var(--on-ink-mut)}
 .pill{background:var(--navy);color:#fff;border-radius:2px;padding:11px 18px;font-size:14px;font-weight:800;white-space:nowrap}
 
 /* 풀블리드 */
-.bleed{position:relative;display:flex;align-items:flex-end;min-height:100svh;padding:0 0 52px;overflow:hidden}
+.bleed{position:relative;display:flex;align-items:flex-end;min-height:100vh;min-height:100svh;padding:0 0 52px;overflow:hidden}
 .bleed>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:32% 42%;z-index:0;
   filter:saturate(.55) contrast(1.04)}
 /* 사진이 보여야 근거가 된다. 글자 뒤쪽만 진하게 깐다 */
 .bleed::after{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,rgba(3,51,115,.62) 0%,rgba(3,51,115,.26) 26%,rgba(3,51,115,.66) 58%,rgba(3,51,115,.93) 82%,var(--navy) 100%)}
 .bleed .wrap{position:relative;z-index:2;width:100%}
-.bleed.short{min-height:78svh}
+.bleed.short{min-height:78vh;min-height:78svh}
 
 /* 히어로 */
 .cats{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
@@ -92,6 +93,8 @@ header:not(.solid) .hd-time{color:var(--on-ink-mut)}
 
 /* 네이비 섹션 */
 .on-navy{background:var(--navy);color:var(--on-ink)}
+/* 풀블리드 안에서는 글자색만 쓴다. 배경을 칠하면 사진 위에 네모가 얹힌다 */
+.bleed .on-navy{background:transparent}
 
 /* 분야 — 요약은 항상 보이고 상세만 접는다 */
 .field{border-top:1px solid var(--paper-400)}
@@ -233,9 +236,10 @@ footer strong{color:var(--on-ink);font-weight:800;font-size:16px;display:block;m
 .top.on{opacity:1;pointer-events:auto}
 .top.up{opacity:0;pointer-events:none} /* 분야 레일이 떠 있는 동안은 숨긴다 */
 
-/* 스크롤 진입 — 짧고 얕게. 길면 느리다고 느낀다 */
-.r{opacity:0;transform:translateY(14px)}
-.r.in{opacity:1;transform:none;transition:opacity .45s ease-out,transform .45s ease-out}
+/* 스크롤 진입 — 짧고 얕게. 길면 느리다고 느낀다.
+   .js 가 붙어야만 숨긴다. 스크립트가 차단돼도 본문은 그대로 보인다 */
+.js .r{opacity:0;transform:translateY(14px)}
+.js .r.in{opacity:1;transform:none;transition:opacity .45s ease-out,transform .45s ease-out}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .r{opacity:1;transform:none}
